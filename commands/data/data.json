@@ -1,0 +1,23 @@
+{
+"sonds" : [
+    {"name" : "jack", "path" : "jack.mp3"},
+    {"name" : "duel", "path" : "duel.mp3"},
+    {"name" : "omae", "path" : "omae.mp3"},
+    {"name" : "homme", "path" : "homme.mp3"},
+    {"name" : "wall", "path" : "wall.mp3"},
+    {"name" : "poudre", "path" : "poudre.mp3"},
+    {"name" : "oui", "path" : "oui.mp3"},
+    {"name" : "merde", "path" : "merde.mp3"},
+    {"name" : "parler", "path" : "parler.mp3"},
+    {"name" : "popopo", "path" : "popopo.mp3"},   
+    {"name" : "pomme", "path" : "pomme.mp3"},
+    {"name" : "chinois", "path" : "chinois.mp3"},
+    {"name" : "salope", "path" : "salope.mp3"},
+    {"name" : "glisser", "path" : "glisser.mp3"},
+    {"name" : "yamete", "path" : "yamete.mp3"},
+    {"name" : "issou", "path" : "issou.mp3"},
+    {"name" : "doit", "path" : "doit.mp3"},
+    {"name" : "timestop", "path" : "timestop.mp3"},
+    {"name" : "god", "path" : "god.mp3"},
+    {"name" : "brute", "path" : "brute.mp3"}]
+}

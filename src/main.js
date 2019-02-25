@@ -11,16 +11,16 @@ const purge = require("./commands/purge.js")
 
 client.on("ready", () => {
 	console.log("--------------------------------------");
-	client.user.setPresence( { game: { name: "help pour avoir de l'aide",type: 0 }});
+	client.user.setPresence( { game: { name: config.play,type: 0 }});
 });
 
 client.on("message", function (message) {
 	let commandUsed =
-		google.parse(message) || 
-		//play.parse(message) || 
-		ping.parse(message) || 
-		//pong.parse(message) || 
-		//help.parse(message) || 
+		google.parse(message) ||
+		play.parse(message) ||
+		ping.parse(message) ||
+		//pong.parse(message) ||
+		help.parse(message) ||
 		purge.parse(message)
 });
 

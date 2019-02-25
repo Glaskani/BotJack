@@ -1,5 +1,5 @@
 {
-  "token" : "MonToken",
-  "rank" : "Les petits jeunes",
-  "client_id" : "caca!"
+  "token" : "MyToken",
+  "rank" : "MyRank",
+  "play" : "help pour avoir de l'aide"
 }

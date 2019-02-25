@@ -2,7 +2,7 @@
 
 A discord bot is something that'll help you make do things in your guild easier. It provides various functions ranging from playing music to sending memes. It can also help you in administrating your discord guild when you're away.
 
-[Sample](../blob/master/res/bot.jpg)
+[Sample](../master/res/bot.jpg)
 
 ## Getting Started
 
@@ -61,4 +61,4 @@ See the list of [contributors](https://github.com/VictorHachard/DiscordBot/graph
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](../blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](../master/LICENSE) file for details.

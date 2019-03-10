@@ -8,6 +8,7 @@ const play = require("./commands/play.js")
 const ping = require("./commands/ping.js")
 const pong = require("./commands/pong.js")
 const purge = require("./commands/purge.js")
+const vole = require("./commands/vole.js")
 
 client.on("ready", () => {
 	console.log("--------------------------------------");
@@ -19,7 +20,7 @@ client.on("message", function (message) {
 		google.parse(message) ||
 		play.parse(message) ||
 		ping.parse(message) ||
-		//pong.parse(message) ||
+		vole.parse(message) ||
 		help.parse(message) ||
 		purge.parse(message)
 });

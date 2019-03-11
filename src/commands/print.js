@@ -1,34 +1,50 @@
 const Discord = require("discord.js");
+const config = require("../config.json");
 
-module.exports.embed = function (string, link) {
+function deleteInfo(time) {
+  return ' `*auto delete in ' + time + ' seconds*`';
+}
+
+function errorSend(string, link) {};
+
+module.exports.embed = function (string, link, authorBol) {
     var embed = new Discord.RichEmbed();
-    //if (author !== undefined) {embed.setAuthor(author.username, author.avatarURL);};
-    embed.setColor('#318EEA')
+    if (author !== undefined || authorBol) {embed.setAuthor(link.author.username, link.author.avatarURL);};
+    embed.setColor(confid.embedColor)
         .setDescription(string);
     //send the embed
     link.channel.send(embed)
-    .catch(/*Error handling if the Message isn't returned, sent, etc.*/);
+        .catch(error => errorSend(error, link));
+    link.delete(100); //Deleting the user message
 };
 module.exports.logUser = function(string, link) {
-    link.reply('Please show this message to the administrator of this server.```' + string + '```')
-    .catch(/*Error handling if the Message isn't returned, sent, etc.*/);
+    var botChannel = link.guild.channels.find(channel => channel.name === config.botChannel);
+    var res = 'Please show this message to the administrator of this server```' + string + '```';
+    link.reply(res)
+        .catch(error => errorSend(error, link));
+    botChannel.send(res)
+        .catch(error => errorSend(error, link));
+    console.log('Error: ' + string);
 };
 module.exports.log = function(string, link) {
-    var botChannel = link.guild.channels.find(channel => channel.name === "bot");
-    botChannel.send('Log from ' + link.author.username + ', `' + string + '`')
-    .catch(/*Error handling if the Message isn't returned, sent, etc.*/);
+    var botChannel = link.guild.channels.find(channel => channel.name === config.botChannel);
+    var res = '**Log**: Request by *' + link.author.username + '*, in *' + link.channel.name + '*, `' + string + '`';
+    botChannel.send(res)
+        .catch(error => errorSend(error, link));
+    console.log(res);
 };
 module.exports.reply = function(string, link) {
-    link.reply(string + ' *This message auto delete in 10 seconds*')
+    link.reply(string + deleteInfo(10))
     .then(msg => {
         msg.delete(10000)
-    })
-    .catch(/*Error handling if the Message isn't returned, sent, etc.*/);
+    }).catch(error => errorSend(error, link));
+    link.edit(link.toString() + ' ,' + deleteInfo(10));
+    link.delete(10000);
 };
 module.exports.permission = function(string, link) {
-    link.reply('You need the \`' + string + '\` role to use this command. *This message auto delete in 10 seconds*')
+    link.reply('You need the \`' + string + '\` role to use this command,' + deleteInfo(10))
     .then(msg => {
         msg.delete(10000)
-    })
-    .catch(/*Error handling if the Message isn't returned, sent, etc.*/);
+    }).catch(error => errorSend(error, link));
+    link.delete(100); //Deleting the user message
 };

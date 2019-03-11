@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const config = require("../config.json");
 
 class Command {
     constructor(commande, func) {
@@ -7,13 +8,13 @@ class Command {
     }
     parse (message) {
         if (this.match(message)) {
-            this.action(message)
+            this.action(message);
             return true;
         }
         return false;
     }
     match (message) {
-        return this.__com==message.content.split(" ")[0];
+        return config.prefix + this.__com==message.content.split(" ")[0];
     }
     action (message) {
         this.__func(message);

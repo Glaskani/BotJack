@@ -1,5 +1,11 @@
 {
-  "token" : "MyToken",
-  "rank" : "MyRank",
-  "play" : "help pour avoir de l'aide"
+  "token" : "",
+  "rank" : "Gestation",
+  "play" : "help pour avoir de l'aide",
+  "prefix" : "1",
+  "embedColor" : "#318EEA",
+  "botChannel" : "bot",
+  "botCommander" : "bot-commander",
+  "botPlay" : "bot-play",
+  "botWhiteList" : "bot-white"
 }

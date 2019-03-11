@@ -14,7 +14,7 @@ class Command {
         return false;
     }
     match (message) {
-        return config.prefix + this.__com==message.content.split(" ")[0];
+        return config.prefix + this.__com==message.content.split(" ")[0].toLowerCase();
     }
     action (message) {
         this.__func(message);

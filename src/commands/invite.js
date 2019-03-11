@@ -12,10 +12,10 @@ module.exports = new Command("invite", function(message) {
     let guild = message.guild;
     async function invite() {
         //Help
-        args.forEach(element => {if (element.toLowerCase() === 'help') {Print.reply(usage);return;}});
+        args.forEach(element => {if (element.toLowerCase() === 'help') {Print.reply(usage, message);return;}});
         //Verification
         //Main methode
-        Print.embed('[Add me!](https://www.google.com)\n[GitHub](https://www.google.com)', message);
+        Print.embed('Link', '[Add me!](https://www.google.com)\n[GitHub](https://github.com/VictorHachard/DiscordBot)', message, false);
         str = 'succes';
   } invite();
   //Log the command call succes or the fail

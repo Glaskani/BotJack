@@ -1,14 +1,12 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require("./config.json")
-const Commande = require("./commands/command.js")
-const google = require("./commands/google.js")
-const help = require("./commands/help.js")
-const play = require("./commands/play.js")
-const ping = require("./commands/ping.js")
-const pong = require("./commands/pong.js")
-const purge = require("./commands/purge.js")
-const vole = require("./commands/vole.js")
+const config = require("./config.json");
+const google = require("./commands/google.js");
+const help = require("./commands/help.js");
+const play = require("./commands/play.js");
+const ping = require("./commands/ping.js");
+const purge = require("./commands/purge.js");
+const vole = require("./commands/vole.js");
 
 client.on("ready", () => {
 	console.log("--------------------------------------");
@@ -26,10 +24,8 @@ client.on("message", function (message) {
 });
 
 client.on("guildMemberAdd", member => {
-
 	var role = member.guild.roles.find('name', config.rank);
 	member.addRole(role)
-
 });
 
 client.login(config.token);

@@ -1,42 +1,21 @@
 const Command = require("./command.js")
 const Discord = require("discord.js");
+const Print = require("./print.js");
 
-module.exports = new Command("purge",function(message) {
+module.exports = new Command("purge", function(message) {
     async function purge() {
         let msg = message.content.split(" ");
         let args = msg.slice(1);
-            message.delete(); 
-            if (!message.member.roles.find("name", "bot-commander")) { 
-                message.reply('You need the \`bot-commander\` role to use this command.');
-                return; 
-            }
-            else if ((msg[1])==!'jack') {
-                message.reply('Please use a number as your arguments, You must provide at least 2 and at most 100 messages. \n Usage: purge <amount>'); 
-                return;
-            }
-            else if ((msg[1])=='jack') {
-                //let botmsg = message.author.client;
-                const test = await message.channel.fetchMessages().then(messages => messages.map(m => m.author.client))
-                message.channel.bulkDelete(test)
-
-                var help_embed = new Discord.RichEmbed()
-                    .setColor('#318EEA')
-                    .setDescription('Messages jack found and delete')
-                message.channel.sendEmbed(help_embed);
-                return;
-            }
-            else if (isNaN(args[0]) || (args[0])==1 || (args[0])==0 || (msg[1])==!'jack') {
-                message.reply('Please use a number as your arguments, You must provide at least 2 and at most 100 messages. \n Usage: purge <amount>'); 
-                return;
-            } 
-            const fetched = await message.channel.fetchMessages({limit: args[0]}); 
-            console.log(fetched.size + ' messages found'); 
-            message.channel.bulkDelete(fetched)
-            var help_embed = new Discord.RichEmbed()
-                .setColor('#318EEA')
-                .setDescription(fetched.size + ' Messages found and delete')
-            message.channel.sendEmbed(help_embed);
-    }
-    purge();
-    console.log("Commande purge call !")
+        let author = message.author;
+        let guild = message.guild;
+        //Verification
+        if (!message.member.roles.find("name", "bot-commander")) {Print.permission("bot-commander", message);return;} //Permission
+        else if (args.length < 1 || args.length > 1) {Print.reply('Only one argument can be taken.\nUsage: `purge <amount>`', message);return;} //Arg missing
+        else if (isNaN(args[0]) || args[0]< 2 || args[0]> 100) {Print.reply('Please enter a number between 2 and 100.\nUsage: `purge <amount>`', message);return;} //Arg not correct
+        //Main methode
+        const fetched = await message.channel.fetchMessages({limit: args[0]});
+        message.channel.bulkDelete(fetched);
+        Print.embed(fetched.size + ' Messages found and delete', message);
+        Print.log(msg[0] + " command call, " + fetched.size + ' Messages found and delete, in the ' + message.channel.name + " channel", message);
+    } purge();
 });

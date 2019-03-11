@@ -1,9 +1,13 @@
-const Command = require('./command')
+const Command = require('./command');
+const Discord = require("discord.js");
+const Print = require("./print.js");
 
 module.exports = new Command("google",function(message) {
-    let args = message.content.split(' ')
-    args.shift()
-    message.delete()
+    let msg = message.content.split(" ");
+    let args = msg.slice(1);
+    let author = message.author;
+    let guild = message.guild;
+    args.shift();
     message.channel.send({embed: {
         color: 3447003,
         author: {
@@ -12,5 +16,5 @@ module.exports = new Command("google",function(message) {
           },
         description: 'https://www.google.fr/#q=' + args.join('%20'),
       }});
-    console.log("Commands google demandée !");
+      Print.log(msg[0] + ' command call, link: https://www.google.fr/#q=' + args.join('%20'), message);
 });

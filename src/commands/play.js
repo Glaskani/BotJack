@@ -101,5 +101,5 @@ module.exports = new Command("play", function(message) {
 		} else {Print.reply('You does something wrong\n' + usage, message);return;}
 	} play();
 	//Log the command call succes or the fail
-	Print.log(msg[0] + ' command call, ' + str, message);
+	Print.log(msg[0] + ' ' + args.toString().replace(/,/g, ' ') + ' command call, ' + str, message);
 });

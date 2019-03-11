@@ -8,6 +8,7 @@ const play = require("./commands/play.js");
 const ping = require("./commands/ping.js");
 const purge = require("./commands/purge.js");
 const fly = require("./commands/fly.js");
+const dice = require("./commands/dice.js");
 const invite = require("./commands/invite.js");
 
 client.on("ready", () => {
@@ -23,6 +24,7 @@ client.on("message", function(message) {
 		fly.parse(message) ||
 		help.parse(message) ||
 		invite.parse(message) ||
+		dice.parse(message) ||
 		purge.parse(message);
 });
 

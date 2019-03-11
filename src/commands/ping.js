@@ -1,17 +1,18 @@
 const Command = require("./command.js")
 const Discord = require("discord.js");
 const Print = require("./print.js");
+const commandJson = require("../command.json");
 
 module.exports = new Command("ping", function(message) {
 	let str = 'fail to correctly execute the command';
-	let usage = 'Usage: `ping`';
 	let msg = message.content.split(" ");
 	let args = msg.slice(1);
 	let author = message.author;
 	let guild = message.guild;
 	async function ping() {
 		//Help
-		args.forEach(element => {if (element.toLowerCase() === 'help') {Print.reply(usage, message);return;}});
+		for (let index=0; index < args.length; index++) {if (args[index].toLowerCase() === 'help') {
+            Print.reply(commandJson.ping.usage + commandJson.inBetween + commandJson.ping.description, message);return;}}
 		//Main methode
 		message.channel.send("Pinging ...")
 			.then((msg) => {
@@ -21,5 +22,5 @@ module.exports = new Command("ping", function(message) {
 		str = 'succes';
 	} ping();
 	//Log the command call succes or the fail
-	Print.log(msg[0] + ' command call, ' + str, message);
+	Print.log(msg[0] + ' ' + args.toString().replace(/,/g, ' ') + ' command call, ' + str, message);
 });

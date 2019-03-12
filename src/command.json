@@ -1,39 +1,68 @@
-{
-  "inBetween": " --- ",
-  "strPermission": "fail, the user don't have the permission require",
-  "invite": {
+[
+  {
+    "name" : "help",
     "permission" : "",
-    "usage": "Usage: `invite`",
-    "description": "Return a invite link and a GitHub link"
+    "usage": "`help`",
+    "description": "Return the commands of the bot"
   },
-  "google": {
+  {
+    "name" : "invite",
     "permission" : "",
-    "usage": "Usage: `google <research>`",
-    "description": "Return a link of your research"
+    "usage": "`invite`",
+    "description": "Return a bot invitation link and a GitHub one"
   },
-  "ping": {
+  {
+    "name" : "google",
     "permission" : "",
-    "usage": "Usage: `ping`",
+    "usage": "`google <research>`",
+    "description": "Return a google link of your research"
+  },
+  {
+    "name" : "ping",
+    "permission" : "",
+    "usage": "`ping`",
     "description": "Return the ping of the bot in milliseconde"
   },
-  "dice": {
+  {
+    "name" : "info",
     "permission" : "",
-    "usage": "Usage: `dice <max>`",
-    "description": "Return a number between 0 and max"
+    "usage": "`info <@mention>`",
+    "description": "Return information of the user @mention"
   },
-  "help": {
+  {
+    "name" : "dice",
     "permission" : "",
-    "usage": "Usage: `help`",
-    "description": "Return the bot commands list"
+    "usage": "`dice <max>`",
+    "description": "Return a number between 0 and the max given"
   },
-  "fly": {
-    "permission" : "",
-    "usage": "Usage: `fly <@mention>`",
-    "description": "The mentioned person will fly"
+  {
+    "name" : "fly",
+    "permission" : "botCommander",
+    "usage": "`fly <@mention>`",
+    "description": "The mentioned person will fly in all channel of the server"
   },
-  "purge": {
+  {
+    "name" : "purge",
+    "permission" : "botCommander",
+    "usage": "`purge <amount> <@mention>[Optional]`",
+    "description": "Delete a numbers of message in this channel"
+  },
+  {
+    "name" : "play",
+    "permission" : "botPlay",
+    "usage": "`play `",
+    "description": ""
+  },
+  {
+    "name" : "broadcast",
+    "permission" : "botCommander",
+    "usage": "`broadcast <message>`",
+    "description": "Broadcast in all text channels the message given"
+  },
+  {
+    "name" : "flip",
     "permission" : "",
-    "usage": "Usage: `purge <amount> <@mention>[Optional]`",
-    "description": "Delete the number enter of message in this channel"
+    "usage": "`flip`",
+    "description": "Flip a coin and return heads or tails"
   }
-}
+]

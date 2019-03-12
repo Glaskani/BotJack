@@ -34,8 +34,8 @@ function getRandPlayFile() {
 	return './commands/data/sonds/' + data.sonds[Math.floor(Math.random() * data.sonds.length)].path;
 }
 
-module.exports = new Command("play", function(message) {
-	let str = 'fail to correctly execute the command';
+module.exports = new Command("play", function(receivedMessage, primaryCommand, argumentsCommand) {
+	Print.logUser("Error, the command is actually not available", receivedMessage);return;
 	let usage = 'Usage: `play <meme>` play a meme\n'
 		+ '       `play meme` list of availble meme\n'
 		+ '       `play random` play a random meme\n'
@@ -43,11 +43,7 @@ module.exports = new Command("play", function(message) {
 		+ '       `play pause`\n'
 		+ '       `play stop`\n'
 		+ '       `play volume <value>[0.0 - 1.0]`\n';
-	let msg = message.content.split(" ");
-	let args = msg.slice(1);
-	let author = message.author;
-	let guild = message.guild;
-	async function play() {Print.logUser("Error, the command is actually not available", message);return;
+	async function play() {
 		//Help
 		args.forEach(element => {if (element.toLowerCase() === 'help') {Print.reply(usage, message);return;}});
 		//Verification
@@ -100,6 +96,4 @@ module.exports = new Command("play", function(message) {
 			}
 		} else {Print.reply('You does something wrong\n' + usage, message);return;}
 	} play();
-	//Log the command call succes or the fail
-	Print.log(msg[0] + ' ' + args.toString().replace(/,/g, ' ') + ' command call, ' + str, message);
 });

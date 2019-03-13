@@ -1,6 +1,5 @@
 const Command = require("./command.js")
 const Discord = require("discord.js");
-const Print = require("./print.js");
 
 module.exports = new Command("fly", function(receivedMessage, primaryCommand, argumentsCommand) {
     let guild = receivedMessage.guild;
@@ -12,10 +11,10 @@ module.exports = new Command("fly", function(receivedMessage, primaryCommand, ar
     const userVoiceRoom = receivedMessage.member.voiceChannelID;
     for (var j = 0; j < channels.length; j++) {
         if (channels[j].type === "voice" && channels[j].id !== userVoiceRoom) {
-            guild.member(messageMentions.id).setVoiceChannel(channels[j].id).catch(error => Print.logUser(error, receivedMessage));
+            guild.member(messageMentions.id).setVoiceChannel(channels[j].id).catch(error => Command.logError(error, receivedMessage));
         }
     }
-    guild.member(messageMentions.id).setVoiceChannel(userVoiceRoom).catch(error => Print.logUser(error, receivedMessage));
-    Print.embed("Elected", messageMentions + ', has been elected!', receivedMessage, false);
+    guild.member(messageMentions.id).setVoiceChannel(userVoiceRoom).catch(error => Command.logError(error, receivedMessage));
+    Command.embed("Elected", messageMentions + ', has been elected!', receivedMessage, false);
     return messageMentions.username + ', has been elected!';
 });

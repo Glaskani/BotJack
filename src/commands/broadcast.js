@@ -1,6 +1,5 @@
 const Command = require("./command.js")
 const Discord = require("discord.js");
-const Print = require("./print.js");
 const config = require("../config.json");
 
 module.exports = new Command("broadcast", function(receivedMessage, primaryCommand, argumentsCommand) {
@@ -12,9 +11,9 @@ module.exports = new Command("broadcast", function(receivedMessage, primaryComma
     const channels = guild.channels.array();
     for (var j=0; j < channels.length; j++) {
         if (channels[j].type === "text") {
-            channels[j].send(embed).catch(error => Print.logUser(error, receivedMessage));
+            channels[j].send(embed).catch(error => Command.logError(error, receivedMessage));
         }
     }
-    receivedMessage.delete(100).catch(error => Print.logUser(error, receivedMessage));
+    receivedMessage.delete(100).catch(error => Command.logError(error, receivedMessage));
     return "'" + argumentsCommand.toString().replace(/,/g, ' ') + "' has been broadcast in all text channels";
 });

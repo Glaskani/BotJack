@@ -1,6 +1,5 @@
 const Command = require("./command.js")
 const Discord = require("discord.js");
-const Print = require("./print.js");
 
 module.exports = new Command("dice", function(receivedMessage, primaryCommand, argumentsCommand) {
     if (argumentsCommand.length != 1) {return 7} //Arg missing
@@ -16,6 +15,6 @@ module.exports = new Command("dice", function(receivedMessage, primaryCommand, a
     }
     average /= 5;
     var res = argumentsCommand[0] + ': ' + numberList.toString().replace(/,/g, ', ') + ' - average: ' + average;
-    Print.embed("Result", '🎲 ' + res, receivedMessage, false);
+    Command.embed("Result", '🎲 ' + res, receivedMessage, false);
 	return 'the roll numbers are ' + res;
 });

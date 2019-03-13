@@ -1,10 +1,8 @@
 const Command = require("./command.js")
 const Discord = require("discord.js");
-const Print = require("./print.js");
 const config = require("../config.json");
 
 module.exports = new Command("info", function(receivedMessage, primaryCommand, argumentsCommand) {
-    let guild = receivedMessage.guild;
     if (argumentsCommand.length  != 1) {return 7} //Arg missing
     else if (receivedMessage.mentions.users.array()[0] === undefined) {return 10} //There is no Mention found
 
@@ -22,8 +20,6 @@ module.exports = new Command("info", function(receivedMessage, primaryCommand, a
         .addField("id", messageMentions.id)
         .addField("note", messageMentions.note)
         .addField("tag", messageMentions.tag);
-    receivedMessage.author.send(embed).catch(error => Print.logUser(error, receivedMessage));
-    receivedMessage.delete(100).catch(error => Print.logUser(error, receivedMessage));
-
+    receivedMessage.author.send(embed).catch(error => Command.logError(error, receivedMessage));
     return 'send information of ' + messageMentions.username;
 });

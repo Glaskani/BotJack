@@ -1,6 +1,5 @@
 const Command = require('./command');
 const Discord = require("discord.js");
-const Print = require("./print.js");
 const data = require("./data/data.json");
 const config = require("../config.json");
 
@@ -35,7 +34,7 @@ function getRandPlayFile() {
 }
 
 module.exports = new Command("play", function(receivedMessage, primaryCommand, argumentsCommand) {
-	Print.logUser("Error, the command is actually not available", receivedMessage);return;
+	Command.logError("Error, the command is actually not available", receivedMessage);return;
 	let usage = 'Usage: `play <meme>` play a meme\n'
 		+ '       `play meme` list of availble meme\n'
 		+ '       `play random` play a random meme\n'

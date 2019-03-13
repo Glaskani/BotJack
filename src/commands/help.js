@@ -1,6 +1,5 @@
 const Command = require("./command.js")
 const Discord = require("discord.js");
-const Print = require("./print.js");
 const config = require("../config.json");
 const commandJson = require("../command.json");
 
@@ -23,7 +22,6 @@ module.exports = new Command("help", function(receivedMessage, primaryCommand, a
         .setAuthor(receivedMessage.author.username, receivedMessage.author.avatarURL)
         .addField("Command for everyone:", res)
         .addField("Command for the elite:", res1);
-    receivedMessage.author.send(embed).catch(error => Print.logUser(error, receivedMessage));
-    receivedMessage.delete(100).catch(error => Print.logUser(error, receivedMessage));
+    receivedMessage.author.send(embed).catch(error => Command.logError(error, receivedMessage));
     return 0;
 });

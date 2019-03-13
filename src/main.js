@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const Print = require("./commands/print.js");
+const Command = require("./commands/command.js")
 const config = require("./config.json");
 const google = require("./commands/google.js");
 const help = require("./commands/help.js");
@@ -42,10 +42,27 @@ client.on("message", function(message) {
 		purge.parse(message);
 });
 
-client.on("guildMemberAdd", member => {
-	var role = member.guild.roles.find('name', config.rank);
-	member.addRole(role);
+/*client.on("guildMemberAdd", member => {
 	member.send(new Discord.RichEmbed().setColor(config.embedColor).addField('Welcome', "Welcome to this server, you can use the command help if you need me or ²help if you need Rythm for the music")).catch();
-});
+	if (config.rank !== '') {
+		var role = member.guild.roles.find('name', config.rank);
+		if (role === null) {
+			Command.logError("Error: botChannel was not found on this server", link);
+		} else {
+			member.addRole(role).catch();
+		}
+	} else {
+		member.send("You role can't be added, please contact an administrator");
+		//Get the Admin private chat
+		if (config.adminID !== "") {
+			var adminPrivateChannel = link.guild.members.find(m => m.id === config.adminID);
+			if (adminPrivateChannel === null) {
+				Command.logError("Error: adminID was not found on this server", link);
+			} else {
+				adminPrivateChannel.send(res + '**Log**: Request by *' + link.author.username + '*, in *' + link.channel.name + '*').catch();
+			}
+		}
+	}
+});*/
 
 client.login(config.token);

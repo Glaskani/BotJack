@@ -10,7 +10,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Requirements
 
-DiscordBot requires the following to run on Linux:
+DiscordBot requires the following to run:
+
+- [node.js](https://nodejs.org/en/)
+- [discord.js](https://discord.js.org/#/)
+
+To run on linux server yo can use:
 
 - [Forever](https://www.npmjs.com/package/forever)
 
@@ -20,9 +25,7 @@ You will need to edit the config.json file, you will need a [token](https://gith
 
 ```json
 {
-  "token" : "MyToken",
-  "rank" : "MyRank",
-  "play" : ""
+  "token" : "MyToken"
 }
 ```
 
@@ -42,10 +45,10 @@ forever stop <INDEX>
 
 #### Permissions
 
-You can add to you some Permissions to control the bot:
+You can add to you some Permissions to control the bot editable in the config file:
 
-- bot-commander: execute admin command like the purge command.
-- bot-jack: execute dj command.
+- bot-commander: execute admin command like the purge or fly commands.
+- bot-play: execute dj commands.
 
 ## What I Learned
 

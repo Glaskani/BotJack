@@ -7,6 +7,6 @@ module.exports = new Command("ping", function(receivedMessage, primaryCommand, a
 		.then((msg) => {
 			msg.edit("<@" + receivedMessage.author.id + ">, pong: " + (Date.now() - msg.createdTimestamp + 'ms'))
 		}).catch(error => Print.logUser(error, receivedMessage));
-		receivedMessage.delete(100).catch(error => Print.logUser(error, receivedMessage));
+		receivedMessage.delete(1000).catch(error => Print.logUser(error, receivedMessage));
 	return 0;
 });

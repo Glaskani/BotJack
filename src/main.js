@@ -20,7 +20,6 @@ client.on("ready", () => {
 });
 
 client.on("message", function(message) {
-	console.log(message);
 	if (message.author.bot) {return} //if(message.author.id === client.user.id) return;
 	if (message.guild === null) { //verifier avec DMchanel plutot
 		message.reply("I can't answer you in private")    
@@ -46,7 +45,7 @@ client.on("message", function(message) {
 client.on("guildMemberAdd", member => {
 	var role = member.guild.roles.find('name', config.rank);
 	member.addRole(role);
-	member.send("Welcome to this server, you can use the command help if you need me or ²help if you need Rythm for the music");
+	member.send(new Discord.RichEmbed().setColor(config.embedColor).addField('Welcome', "Welcome to this server, you can use the command help if you need me or ²help if you need Rythm for the music")).catch();
 });
 
 client.login(config.token);

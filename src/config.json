@@ -1,8 +1,10 @@
 {
   "token" : "",
+  "adminID" : "227508527743238144",
+  "passes" : 1,
   "rank" : "Gestation",
   "play" : "help pour avoir de l'aide",
-  "invite" : "https://discordapp.com/oauth2/authorize?client_id=382201356179472384&scope=bot&permissions=20065280",
+  "invite" : "https://discordapp.com/oauth2/authorize?client_id=382201356179472384&scope=bot&permissions=8",
   "gitHub" : "https://github.com/VictorHachard/DiscordBot",
   "prefix" : "",
   "embedColor" : "#318EEA",

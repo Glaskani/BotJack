@@ -56,7 +56,7 @@ class Command {
             }
         }
         //If in the second arguments is 'help'
-        if (argumentsCommand[0] != null && argumentsCommand[0].toLowerCase() === 'help') {
+        if (argumentsCommand[0] != null && argumentsCommand[0].toLowerCase() === '-help') {
             reply('Usage: ' + usageCommand + ' -- ' + descriptionCommand, receivedMessage);
             logCode = 2;
         }
@@ -188,41 +188,32 @@ function log(string, link) {
 };
 
 /**
- * Log the string given in the botChannel defined in 'config.json', in adminID private chat, reply to the author of the command and in the console
+ * Log the string given in the botChannel defined in 'config.json', in ownerID private chat, reply to the author of the command and in the console
  * @param {*} string the string to log, concatenated with a warning, the author and channel where the command was send
  * @param {*} link the message received by the bot
  *  Error: If the botChannel is not defined, reply a Fatal Error and continue
  *  Error: if the botChannel is not found on the server, reply a Fatal Error and continue
- *  Error: If the adminID is not defined, reply a Fatal Error and continue
- *  Error: if the adminID is not found on the server, reply a Fatal Error and continue
  */
 function logError(string, link) {
-    let ask = 'please show this message to the administrator of this server\n';
+    let ownerID = link.guild.ownerID;
+    let adminPrivateChannel = link.guild.members.find(m => m.id === ownerID);
+    let ask = ' <@'+ownerID+'>, message for the administrator of this server\n';
     let res = '```' + string + '```';
     console.log('Error: ' + string);
     link.reply(ask + res).catch();
     //Get the botChannel
     if (config.botChannel == "") {
-        link.reply(ask + "**Fatal Error**: botChannel is not defined in 'config.json'").catch()
+        link.reply(ask + "**Fatal Error**: botChannel is not defined in 'config.json'").catch();
     } else {
         let botChannel = link.guild.channels.find(channel => channel.name === config.botChannel);
         if (botChannel === null) {
-            link.reply(ask + "**Fatal Error**: botChannel was not found on this server").catch()
+            link.reply(ask + "**Fatal Error**: botChannel was not found on this server").catch();
         } else { //Send in botChannel
-            botChannel.send('<@'+config.adminID+'> ' + ask + res).catch()
+            botChannel.send(ask + res).catch()
         }
     }
     //Get the Admin private chat
-    if (config.adminID == "") {
-        link.reply(ask + "**Fatal Error**: adminID is not defined in 'config.json'").catch();
-    } else {
-        let adminPrivateChannel = link.guild.members.find(m => m.id === config.adminID);
-        if (adminPrivateChannel === null) {
-            link.reply(ask + "**Fatal Error**: adminID was not found on this server").catch();
-        } else { //Send in private chat
-            adminPrivateChannel.send(ask + res + '**Log**: Request by *' + link.author.username + '*, in *' + link.channel.name + '*').catch()
-        }
-    }
+    adminPrivateChannel.send(ask + '**Log**: Request by *' + link.author.username + '*, in *' + link.channel.name + '*' + res).catch()
 };
 
 /**

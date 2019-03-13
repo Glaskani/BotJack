@@ -21,7 +21,8 @@ module.exports = new Command("help", function(receivedMessage, primaryCommand, a
     embed.setColor(config.embedColor)
         .setAuthor(receivedMessage.author.username, receivedMessage.author.avatarURL)
         .addField("Command for everyone:", res)
-        .addField("Command for the elite:", res1);
+        .addField("Command for the elite:", res1)
+        .addField("Information of a command", "Usage: `<command> -help` -- Return usage, information about the command");
     receivedMessage.author.send(embed).catch(error => Command.logError(error, receivedMessage));
     return 0;
 });

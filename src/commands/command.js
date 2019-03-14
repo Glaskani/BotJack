@@ -101,58 +101,57 @@ class Command {
         if (!isNaN(logCode)) {
             switch (logCode) {
                 case 0:
-                    logMessage += 'Succes'
+                    logTemp = 'Succes'
                     break;
                 case 1:
                     logTemp = 'Error: unknown error';
-                    logMessage += logTemp; reply(logTemp, receivedMessage);
+                    reply(logTemp, receivedMessage);
                     break;
                 case 2:
                     logTemp = 'Succes: help for a command';
-                    logMessage += logTemp;
                     break;
                 case 3:
                     logTemp = 'Error: missing argument';
-                    logMessage += logTemp; reply(logTemp, receivedMessage);
+                    reply(logTemp, receivedMessage);
                     break;
                 case 4:
                     logTemp = 'Error: too much argument given';
-                    logMessage += logTemp; reply(logTemp, receivedMessage);
+                    reply(logTemp, receivedMessage);
                     break;
                 case 5:
                     logTemp = 'Error: the argument must be a number';
-                    logMessage += logTemp; reply(logTemp, receivedMessage);
+                    reply(logTemp, receivedMessage);
                     break;
                 case 6:
                     logTemp = 'Error: the argument must be a string';
-                    logMessage += logTemp; reply(logTemp, receivedMessage);
+                    reply(logTemp, receivedMessage);
                     break;
                 case 7:
                     logTemp = 'Error: only one argument can be taken';
-                    logMessage += logTemp; reply(logTemp, receivedMessage);
+                    reply(logTemp, receivedMessage);
                     break;
                 case 8:
                     logTemp = 'Error: ' + config.botCommander + ' permission missing to execute that command'
-                    logMessage += logTemp; permissionError(config.botCommander, receivedMessage);
+                    permissionError(config.botCommander, receivedMessage);
                     break;
                 case 9:
                     logTemp = 'Error: ' + config.botPlay + ' permission missing to execute that command'
-                    logMessage += logTemp; permissionError(config.botPlay, receivedMessage);
+                    permissionError(config.botPlay, receivedMessage);
                     break;
                 case 10:
                     logTemp = 'Error: the argument must be a @mention';
-                    logMessage += logTemp; reply(logTemp, receivedMessage);
+                    reply(logTemp, receivedMessage);
                     break;
                 case 100: //The reply is already done, for special case
                     logTemp = 'Error: error already reply';
-                    logMessage += logTemp;
                     break;
                 default:
                     logTemp = 'Error: ' + logCode + ' is not handle';
-                    logMessage += logTemp; logError(logTemp, receivedMessage);
+                    logError(logTemp, receivedMessage);
                     break;
             }
-        } else if (logCode == 'undefined' || logCode === null) {
+            logMessage += logTemp;
+        } else if (logCode === undefined || logCode === null) {
             logTemp = 'Error: undefined or null' + logCode;
             logMessage += logTemp;
             logError(logTemp, receivedMessage)
@@ -202,7 +201,7 @@ function logError(string, link) {
     console.log('Error: ' + string);
     link.reply(ask + res).catch();
     //Get the botChannel
-    if (config.botChannel == "") {
+    /*if (config.botChannel == "") {
         link.reply(ask + "**Fatal Error**: botChannel is not defined in 'config.json'").catch();
     } else {
         let botChannel = link.guild.channels.find(channel => channel.name === config.botChannel);
@@ -211,7 +210,7 @@ function logError(string, link) {
         } else { //Send in botChannel
             botChannel.send(ask + res).catch()
         }
-    }
+    }*/
     //Get the Admin private chat
     adminPrivateChannel.send(ask + '**Log**: Request by *' + link.author.username + '*, in *' + link.channel.name + '*' + res).catch()
 };

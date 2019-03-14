@@ -17,11 +17,10 @@ const flip = require("./commands/flip.js");
 
 client.on("ready", () => {
 	console.log("--------------------------------------");
-	//logger.user.get(config.adminID).send("Bot online")
 	client.user.setPresence({game: {name: config.prefix + 'help'}, status: 'online'}).catch();
 });
 
-client.on("message", function(message) {
+client.on("message", message => {
 	if (message.author.bot) {return} //if(message.author.id === client.user.id) return;
 	if (message.guild === null) { //verifier avec DMchanel plutot
 		message.reply("I can't answer you in private")    

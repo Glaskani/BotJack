@@ -41,6 +41,23 @@ client.on("message", message => {
 		flip.parse(message) ||
 		broadcast.parse(message) ||
 		purge.parse(message);
+		/*if (message.content == 'play') {
+		async function play() {
+			message.reply("coucou")
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join()
+			.then(connection => {
+				const dispatcher = connection.playFile("./commands/data/sonds/omae.mp3");
+				dispatcher.setVolume(0.5);
+				dispatcher.on("end", function() {
+					voiceChannel.leave()
+				  });
+				dispatcher.on("error", function() {
+					message.reply(message, "There was an error");
+				  });
+			});
+		}; play();*/
+	//}
 });
 
 client.on("guildMemberAdd", member => {

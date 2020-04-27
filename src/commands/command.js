@@ -170,6 +170,7 @@ class Command {
  * Error: if the botChannel is not found on the server, call logError and return
  */
 function log(string, link) {
+    return;
     let res = '**Log**: Request by *' + link.author.username + '*, in *' + link.channel.name + '*, ' + string;
     console.log(res);
     //Get the botChannel

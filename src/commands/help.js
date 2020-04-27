@@ -4,7 +4,7 @@ const config = require("../config.json");
 const commandJson = require("../command.json");
 
 module.exports = new Command("help", function(receivedMessage, primaryCommand, argumentsCommand) {
-    var embed = new Discord.RichEmbed();
+    var embed = new Discord.MessageEmbed();
     let res = '';
     let res1 = '';
     for (let i=0; i < commandJson.length; i++) {
